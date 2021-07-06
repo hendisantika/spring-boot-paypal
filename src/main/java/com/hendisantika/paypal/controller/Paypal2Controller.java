@@ -48,4 +48,9 @@ public class Paypal2Controller {
         }
         return "redirect:/";
     }
+
+    @GetMapping(value = CANCEL_URL)
+    public String cancelPay() {
+        return "cancel";
+    }
 }
