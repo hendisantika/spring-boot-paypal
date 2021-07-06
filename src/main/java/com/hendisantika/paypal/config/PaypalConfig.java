@@ -1,0 +1,24 @@
+package com.hendisantika.paypal.config;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+
+/**
+ * Created by IntelliJ IDEA.
+ * Project : spring-boot-paypal
+ * User: hendisantika
+ * Email: hendisantika@gmail.com
+ * Telegram : @hendisantika34
+ * Date: 06/07/21
+ * Time: 12.41
+ */
+@Configuration
+public class PaypalConfig {
+
+    @Value("${paypal.client.id}")
+    private String clientId;
+    @Value("${paypal.client.secret}")
+    private String clientSecret;
+    @Value("${paypal.mode}")
+    private String mode;
+}
