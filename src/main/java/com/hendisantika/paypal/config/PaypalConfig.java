@@ -1,5 +1,6 @@
 package com.hendisantika.paypal.config;
 
+import com.paypal.base.rest.OAuthTokenCredential;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,5 +32,10 @@ public class PaypalConfig {
         Map<String, String> configMap = new HashMap<>();
         configMap.put("mode", mode);
         return configMap;
+    }
+
+    @Bean
+    public OAuthTokenCredential oAuthTokenCredential() {
+        return new OAuthTokenCredential(clientId, clientSecret, paypalSdkConfig());
     }
 }
