@@ -3,6 +3,7 @@ package com.hendisantika.paypal.controller;
 import com.hendisantika.paypal.service.PaypalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 /**
  * Created by IntelliJ IDEA.
@@ -19,4 +20,9 @@ public class Paypal2Controller {
     public static final String CANCEL_URL = "pay/cancel";
     @Autowired
     PaypalService service;
+
+    @GetMapping("/")
+    public String home() {
+        return "home";
+    }
 }
