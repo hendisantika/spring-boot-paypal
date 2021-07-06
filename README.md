@@ -5,3 +5,13 @@ Spring Boot Paypal Example
 2. Navigate to the folder: `cd spring-boot-paypal`
 3. Run the application: `mvn clean spring-boot:run`
 4. Open your favorite browser: https://localhost:8080
+
+### Images Scren shot
+
+Home Page
+
+![Home Page](img/home.png "Home Page")
+
+Success Page
+
+![Success Page](img/success.png "Success Page")
