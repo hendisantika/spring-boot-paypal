@@ -1,9 +1,13 @@
 package com.hendisantika.paypal.controller;
 
 import com.hendisantika.paypal.service.PaypalService;
+import com.paypal.api.payments.Payment;
+import com.paypal.base.rest.PayPalRESTException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * Created by IntelliJ IDEA.
@@ -24,5 +28,24 @@ public class Paypal2Controller {
     @GetMapping("/")
     public String home() {
         return "home";
+    }
+
+    @PostMapping("/pay")
+    public String payment(@ModelAttribute("order") Order order) {
+        try {
+            Payment payment = service.createPayment(order.getPrice(), order.getCurrency(), order.getMethod(),
+                    order.getIntent(), order.getDescription(), "http://localhost:9090/" + CANCEL_URL,
+                    "http://localhost:9090/" + SUCCESS_URL);
+            for (Links link : payment.getLinks()) {
+                if (link.getRel().equals("approval_url")) {
+                    return "redirect:" + link.getHref();
+                }
+            }
+
+        } catch (PayPalRESTException e) {
+
+            e.printStackTrace();
+        }
+        return "redirect:/";
     }
 }
